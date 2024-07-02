@@ -75,18 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     decreaseBetButton.addEventListener("click", function () {
-        if (betAmount > 1) {
-            betAmount--;
-            updateBetAmount();
+        let currentBetAmount = parseFloat(betAmountInput.value);
+        if (currentBetAmount > 1) {
+            betAmountInput.value = --currentBetAmount;
         }
     });
 
     increaseBetButton.addEventListener("click", function () {
-        betAmount++;
-        updateBetAmount();
+        let currentBetAmount = parseFloat(betAmountInput.value);
+        betAmountInput.value = ++currentBetAmount;
     });
-
-    function updateBetAmount() {
-        betAmountInput.value = betAmount;
-    }
 });
