@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const betButton = document.getElementById("bet-button");
     const increaseImg = document.getElementById("increase-img"); // Changed to image element
     const cashoutButton = document.getElementById("cashout-button");
+    const decreaseBetButton = document.getElementById("decrease-bet");
+    const increaseBetButton = document.getElementById("increase-bet");
 
     let balance = 100;
     let betAmount = 10;
@@ -67,4 +69,22 @@ document.addEventListener("DOMContentLoaded", function () {
         betButton.disabled = false;
         increaseImg.src = "first-image.png"; // Reset image on cash out
     });
+
+    decreaseBetButton.addEventListener("click", function () {
+        if (betAmount > 1) {
+            betAmount--;
+            updateBetAmount();
+        }
+    });
+
+    increaseBetButton.addEventListener("click", function () {
+        // Burada betAmount'un maksimum değerini kontrol edebilirsiniz.
+        // Örneğin, belirli bir sınıra ulaştığında artırmayı engelleyebilirsiniz.
+        betAmount++;
+        updateBetAmount();
+    });
+
+    function updateBetAmount() {
+        betAmountElement.value = betAmount;
+    }
 });
