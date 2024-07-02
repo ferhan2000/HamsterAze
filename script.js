@@ -1,26 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     const balanceElement = document.getElementById("balance");
-    const betAmountInput = document.getElementById("bet-amount");
+    const betAmountElement = document.getElementById("bet-amount");
     const multiplierElement = document.getElementById("multiplier");
     const betButton = document.getElementById("bet-button");
-    const increaseImg = document.getElementById("increase-img");
+    const increaseImg = document.getElementById("increase-img"); // Changed to image element
     const cashoutButton = document.getElementById("cashout-button");
     const decreaseBetButton = document.getElementById("decrease-bet");
     const increaseBetButton = document.getElementById("increase-bet");
 
     let balance = 100;
-    let betAmount = parseFloat(betAmountInput.value);
+    let betAmount = 10;
     let multiplier = 0.1;
     let gameActive = false;
 
     betButton.addEventListener("click", function () {
         if (gameActive) return;
-
-        betAmount = parseFloat(betAmountInput.value);
-        if (balance < betAmount) {
-            alert("Insufficient balance!");
-            return;
-        }
 
         gameActive = true;
         multiplier = 0.1;
@@ -29,15 +23,16 @@ document.addEventListener("DOMContentLoaded", function () {
         balanceElement.textContent = balance.toFixed(2);
 
         betButton.disabled = true;
-        increaseImg.src = "second-image.png";
+        increaseImg.src = "second-image.png"; // Change image source on bet click
         cashoutButton.disabled = false;
 
+        // Randomly set when the game will crash (between 2 to 10 seconds)
         const crashTime = Math.floor(Math.random() * 8000) + 2000;
 
         setTimeout(() => {
             if (gameActive) {
                 gameActive = false;
-                increaseImg.src = "first-image.png";
+                increaseImg.src = "first-image.png"; // Reset image on game crash
                 cashoutButton.disabled = true;
                 multiplier = 0.1;
                 multiplierElement.textContent = multiplier.toFixed(1);
@@ -53,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         multiplier += 0.1;
         multiplierElement.textContent = multiplier.toFixed(1);
 
+        // Toggle between first-image.png and second-image.png on each click
         if (increaseImg.src.includes("first-image.png")) {
             increaseImg.src = "second-image.png";
         } else {
@@ -71,18 +67,24 @@ document.addEventListener("DOMContentLoaded", function () {
         multiplierElement.textContent = "0.1";
         alert(`You cashed out at x${multiplier.toFixed(1)} and won $${winnings.toFixed(2)}!`);
         betButton.disabled = false;
-        increaseImg.src = "first-image.png";
+        increaseImg.src = "first-image.png"; // Reset image on cash out
     });
 
     decreaseBetButton.addEventListener("click", function () {
-        let currentBetAmount = parseFloat(betAmountInput.value);
-        if (currentBetAmount > 1) {
-            betAmountInput.value = --currentBetAmount;
+        if (betAmount > 1) {
+            betAmount--;
+            updateBetAmount();
         }
     });
 
     increaseBetButton.addEventListener("click", function () {
-        let currentBetAmount = parseFloat(betAmountInput.value);
-        betAmountInput.value = ++currentBetAmount;
+        // Burada betAmount'un maksimum değerini kontrol edebilirsiniz.
+        // Örneğin, belirli bir sınıra ulaştığında artırmayı engelleyebilirsiniz.
+        betAmount++;
+        updateBetAmount();
     });
+
+    function updateBetAmount() {
+        betAmountElement.value = betAmount;
+    }
 });
