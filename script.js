@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const balanceElement = document.getElementById("balance");
-    const betAmountElement = document.getElementById("bet-amount");
+    const betAmountInput = document.getElementById("bet-amount");
     const multiplierElement = document.getElementById("multiplier");
     const betButton = document.getElementById("bet-button");
     const increaseImg = document.getElementById("increase-img");
@@ -9,12 +9,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const increaseBetButton = document.getElementById("increase-bet");
 
     let balance = 100;
-    let betAmount = 10;
+    let betAmount = parseFloat(betAmountInput.value);
     let multiplier = 0.1;
     let gameActive = false;
 
     betButton.addEventListener("click", function () {
         if (gameActive) return;
+
+        betAmount = parseFloat(betAmountInput.value);
+        if (balance < betAmount) {
+            alert("Insufficient balance!");
+            return;
+        }
 
         gameActive = true;
         multiplier = 0.1;
@@ -81,6 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateBetAmount() {
-        betAmountElement.textContent = betAmount;
+        betAmountInput.value = betAmount;
     }
 });
