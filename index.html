@@ -3,28 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamster⚔️Money</title>
+    <title>Betting Game</title>
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Meta etiketler iPhone ana ekran uygulama eklemesi için -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="path/to/icon.png">
 </head>
-
 <body>
-    <h1>Hamster⚔️Money</h1>
+    <h1>Betting Game</h1>
     <div id="game-container">
-       <div>
-    <p>Balance: $<span id="balance">100</span></p>
-    <p>Bet Amount: $<input type="number" id="bet-amount" value="10" min="1"></p>
-    <p>Multiplier: x<span id="multiplier">0.1</span></p>
- <div>
+        <div>
             <p>Balance: $<span id="balance">100</span></p>
             <p>Bet Amount: $<span id="bet-amount">10</span></p>
             <p>Multiplier: x<span id="multiplier">0.1</span></p>
         </div>
-
+        <button id="bet-button">Bet</button>
+        <!-- Image tag for increase button -->
+        <img id="increase-img" src="first-image.png" alt="Increase" style="width: 100px; height: 100px; cursor: pointer;">
+        <button id="cashout-button" disabled>Cash Out</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
