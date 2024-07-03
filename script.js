@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
         balance += winnings;
         balanceElement.textContent = balance.toFixed(2);
         multiplierElement.textContent = "0.1";
-        alert(`You cashed out at x${multiplier.toFixed(1)} and won $${winnings.toFixed(2)}!`);
+        alert(You cashed out at x${multiplier.toFixed(1)} and won $${winnings.toFixed(2)}!);
         betButton.disabled = false;
         increaseImg.src = "first-image.png"; // Reset image on cash out
     });
-});
+});"
